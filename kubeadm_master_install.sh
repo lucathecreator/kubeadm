@@ -161,7 +161,7 @@ systemctl enable kubelet && systemctl start kubelet
 
 ### init k8s
 rm /root/.kube/config || true
-kubeadm init --kubernetes-version=${KUBE_VERSION} --ignore-preflight-errors=NumCPU --skip-token-print --pod-network-cidr 192.168.0.0/16
+kubeadm init --kubernetes-version=${KUBE_VERSION} --ignore-preflight-errors=NumCPU --skip-token-print --pod-network-cidr 192.168.0.0/16 --node-name master
 
 mkdir -p ~/.kube
 sudo cp -i /etc/kubernetes/admin.conf ~/.kube/config
@@ -179,6 +179,4 @@ tar xzf ${ETCDCTL_VERSION_FULL}.tar.gz ${ETCDCTL_VERSION_FULL}/etcdctl
 mv ${ETCDCTL_VERSION_FULL}/etcdctl /usr/bin/
 rm -rf ${ETCDCTL_VERSION_FULL} ${ETCDCTL_VERSION_FULL}.tar.gz
 
-echo
-echo "### COMMAND TO ADD A WORKER NODE ###"
-kubeadm token create --print-join-command --ttl 0
+kubectl tain node master node-role.kubernetes.io/control-plane:NoSchedule
