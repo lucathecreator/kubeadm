@@ -179,4 +179,4 @@ tar xzf ${ETCDCTL_VERSION_FULL}.tar.gz ${ETCDCTL_VERSION_FULL}/etcdctl
 mv ${ETCDCTL_VERSION_FULL}/etcdctl /usr/bin/
 rm -rf ${ETCDCTL_VERSION_FULL} ${ETCDCTL_VERSION_FULL}.tar.gz
 
-kubectl tain node master node-role.kubernetes.io/control-plane:NoSchedule
+kubectl taint node master node-role.kubernetes.io/control-plane:NoSchedule-
